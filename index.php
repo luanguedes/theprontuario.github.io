@@ -9,7 +9,7 @@
 <ul>
   <li><a href="#home" class="active">Cadastros</a>
     <ul>
-      <li><a href="cad.php">Paciente</a></li>
+      <li><a href="cad_paciente.php">Paciente</a></li>
       <li><a href="#">Profisional</a></li>
       <li><a href="#">Especialidade</a></li>
     </ul>
