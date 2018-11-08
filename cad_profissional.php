@@ -16,13 +16,12 @@
      
       CNS:  <input type="text" name="nome"/> <br>
      
-      Nome da Mãe: <input type="text" name="nomedamae"/> <br>
-   
-      Endereco: <input type="text" name="endereco"/> <br>
-   
       Cidade: <input type="text" name="cidade"/> <br>
  
       Telefone: <input type="text" name="telefone"/> <br>
+
+      Especialidade: <input type="text" name="Especialidade"/> <br>
+
 
        <p>
           <input type="submit" value="Cadastrar" />
@@ -35,4 +34,4 @@
 
 
 </body>
-</html>
+</html>+
