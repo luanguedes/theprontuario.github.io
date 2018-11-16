@@ -1,0 +1,3 @@
+fieldset{margin:1% auto;}
+.box-mensagem-crud{ margin-top: 10px;}
+.msg-erro{ color: red; }
