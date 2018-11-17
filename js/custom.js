@@ -120,6 +120,15 @@ function validaCadastro(evt){
 	}else{
 		caixa_status.style.display = 'none';
 	}
+
+	caixa_especialidade = document.querySelector('.msg-especialidade');
+	if(nome.value == ""){
+		caixa_nome.innerHTML = "Favor preencher a Especialidade";
+		caixa_nome.style.display = 'block';
+		contErro += 1;
+	}else{
+		caixa_nome.style.display = 'none';
+	}
  
 	if(contErro > ){
 		evt.preventDefault();

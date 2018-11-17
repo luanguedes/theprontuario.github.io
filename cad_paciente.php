@@ -8,35 +8,43 @@
   <title>Cadastro de Pacientes</title>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/custom.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+      <script>
+         $(function () {
+            $("#header").load("index.php");
+         });
+      </script>
 </head>
 <body>
+      
+      <div id="header"></div>
   <div class='container'>
     <fieldset>
       <legend><h1>Cadastro de Pacientes</h1></legend>
-          <form action="action_paciente.php" method="post" id='cadastro' enctype='multipart/form-data'>
+          <form action="action/action_paciente.php" method="post" id='cadastro' enctype='multipart/form-data'>
           <div class="form-group">
             <label for="nome">Nome</label>
             <input type="text" class="form-control" id="nome" name="nome" placeholder="Infome o Nome">
             <span class='msg-erro msg-nome'></span>
           </div>
-          
-          <div class="form-group">
-            <label for="sexo">Sexo</label>
-            <select class="form-control" name="sexo" id="sexo">
-            <option value="">Selecione o Sexo</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Feminino">Feminino</option>
-            <option value="Outro">Outro</option>
-          </select>
-          <span class='msg-erro msg-sexo'></span>
-          </div>
-  
-
-          <div class="form-group">
-            <label for="data_nascimento">Data de Nascimento</label>
-            <input type="data_nascimento" class="form-control" id="data_nascimento" maxlength="10" name="data_nascimento">
-            <span class='msg-erro msg-data'></span>
-          </div>
+           <div class="row">
+              <div class="col">
+              <label></label>
+                  <label for="sexo">Sexo</label>
+                      <select class="form-control" name="sexo" id="sexo">
+                      <option value="">Selecione o Sexo</option>
+                      <option value="Masculino">Masculino</option>
+                      <option value="Feminino">Feminino</option>
+                      <option value="Outro">Outro</option>
+                      </select>
+                      <span class='msg-erro msg-sexo'></span>
+              </div>
+              <div class="form-group">
+                  <label for="data_nascimento">Data de Nascimento</label>
+                  <input type="date" class="form-control" id="data_nascimento" maxlength="10" name="data_nascimento">
+                  <span class='msg-erro msg-data'></span>
+              </div>
+        </div>
 
           <div class="form-group">
             <label for="cns">CNS</label>
@@ -50,15 +58,17 @@
           </div>
             <div class="form-group">
             <label for="endereco">Endereço</label>
-            <input type="endereco" class="form-control" id="endereco" maxlength="25" name="endereco" placeholder="Informe o Endereço">
+            <input type="endereco" class="form-control" id="endereco" maxlength="40" name="endereco" placeholder="Informe o Endereço">
             <span class='msg-erro msg-endereco'></span>
           </div>
-          <div class="form-group">
+         
+        <div class="row">
+             <div class="col">
             <label for="telefone">Telefone</label>
             <input type="telefone" class="form-control" id="telefone" maxlength="12" name="telefone" placeholder="Informe o Telefone">
             <span class='msg-erro msg-telefone'></span>
           </div>
-          <div class="form-group">
+               <div class="form-group">
             <label for="status">Status</label>
             <select class="form-control" name="status" id="status">
             <option value="">Selecione o Status</option>
@@ -67,10 +77,14 @@
           </select>
           <span class='msg-erro msg-status'></span>
           </div>
+        </div>
  
           <input type="hidden" name="acao" value="incluir">
-          <button type="submit" class="btn btn-primary" id='botao'> 
-            Gravar
+          <button type="submit" class="btn btn-outline-success btn-lg" id='botao'> 
+            Cadastrar
+          </button>
+           <button type="button" class="btn btn-primary btn-lg" id='botao'> 
+            <a class = "link" href="consulta_paciente.php">Consultar</a> 
           </button>
       </form>
     </fieldset>

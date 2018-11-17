@@ -2,19 +2,20 @@
 <html>
 <head>
     <meta charset="utf-8">
-	<title>Sistema de Cadastro</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	<title>Sistema de Cadastros</title>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/custom.css">
+
 </head>
 <body>
 	<div class='container box-mensagem-crud'>
 		<?php 
 		
-		require_once 'conexao.php';
- 
+		require_once '../conexao.php';
+ 	
 		// Atribui uma conexão PDO
-		$conexao = conexao::getInstance();
- 
+		$conexao = Conexao::getInstance();
+ 		
 		// Recebe os dados enviados pela submissão
 		$acao             = (isset($_POST['acao'])) ? $_POST['acao'] : '';
 		$id               = (isset($_POST['id'])) ? $_POST['id'] : '';
@@ -86,9 +87,9 @@
  
 		if ($acao == 'incluir'):
  
-			$sql = 'INSERT INTO pacientes (nome, sexo, data_nascimento, cns, nome_mae, endereco, telefone, status)
+			$sql = 'INSERT INTO paciente (nome, sexo, data_nascimento, cns, nome_mae, endereco, telefone, status)
 							   VALUES(:nome, :sexo, :data_nascimento, :cns, :nome_mae, :endereco, :telefone, :status)';
- 
+ 			
 			$stm = $conexao->prepare($sql);
 			$stm->bindValue(':nome', $nome);
 			$stm->bindValue(':sexo', $sexo);
@@ -101,12 +102,24 @@
 			$retorno = $stm->execute();
  
 			if ($retorno):
-				echo "<div class='alert alert-success' role='alert'>Registro inserido com sucesso, aguarde você está sendo redirecionado ...</div> ";
+				echo "<div class='card text-white bg-success mb-3' style='max-width: 40rem;'>
+  						<div class='card-header'>Sucesso</div>
+ 						<div class='card-body'>
+   							<h5 class='card-title'>Cadastro realizado com sucesso!</h5>
+   							<p class='card-text'>Você irá retornar para a tela de cadatro em 5 segundos...</p>
+  					    </div>
+  					 </div>";
 		    else:
-		    	echo "<div class='alert alert-danger' role='alert'>Erro ao inserir registro!</div> ";
+		    	echo "<div class='card text-white bg-danger mb-3' style='max-width: 40rem;' role='alert'>
+  						<div class='card-header'>Erro</div>
+ 						<div class='card-body'>
+   							<h5 class='card-title'>Falha eu realizar o cadastro!</h5>
+   							<p class='card-text'>Contate o Suporte Técnico.<br>Você irá retornar para a tela de cadatro em 5 segundos...</p>
+  					    </div>
+  					 </div>";
 			endif;
  
-			//echo "<meta http-equiv=refresh content='3;URL=index.php'>";
+			echo "<meta http-equiv=refresh content='5;URL=../cad_paciente.php'>";
 		endif;
 		?>
  
