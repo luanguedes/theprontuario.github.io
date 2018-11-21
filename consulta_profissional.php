@@ -47,6 +47,7 @@ endif;
       
      <div id="header"></div>
 	<div class='container'>
+	<div  class="shadow-lg p-3 mb-5 bg-white rounded">
 		<fieldset>
  
 			<legend><h1>Consulta de Profissionais</h1></legend>
@@ -84,8 +85,8 @@ endif;
 							<td><?=$profissional->especialidade?></td>
 							<td><?=$profissional->status?></td>
 							<td>
-								<a href='editar.php?id=<?=$profissional->id?>' class="btn btn-primary">Editar</a>
-								<a href='javascript:void(0)' class="btn btn-danger link_exclusao" rel="<?=$profissional->id?>">Excluir</a>
+								<a href='edit_profissional.php?id=<?=$profissional->id?>' class="btn btn-primary">Editar</a>
+								<a href='javascript:void(0)' class="btn btn-danger exclusao_profissional" rel="<?=$profissional->id?>">Excluir</a>
 							</td>
 						</tr>	
 					<?php endforeach;?>
@@ -97,6 +98,7 @@ endif;
 				<h3 class="text-center text-danger">Não existem profissionais cadastrados!</h3>
 			<?php endif; ?>
 		</fieldset>
+	</div>
 	</div>
 	<script type="text/javascript" src="js/custom.js"></script>
 </body>

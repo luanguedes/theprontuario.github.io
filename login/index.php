@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <link rel="icon" href="imagens/favicon.ico">
 
-    <title> Login</title>
+    <title>Login - The Prontuário</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -30,10 +30,12 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+      
   </head>
-
   <body>
-
+  <div>
+    <center><h1><img src="imagens/icone.png" class="img_titulo"><a class="link" href="index.php">The Prontuário</a></h1></center>
+  </div>
     <div class="container">
 
       <form class="form-signin" method="POST" action="valida.php">

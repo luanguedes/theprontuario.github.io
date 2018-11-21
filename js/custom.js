@@ -1,37 +1,74 @@
-var form = document.getElementById("cadastro");
-if (form.addEventListener) {                   
+var form = document.getElementById('cadastro');
+if (form != null && form.addEventListener) {                   
     form.addEventListener("submit", validaCadastro);
-} else if (form.attachEvent) {                  
+} else if (form != null && form.attachEvent) {                  
     form.attachEvent("onsubmit", validaCadastro);
 }
- 
 
-var inputCNS = document.getElementById("cns");
-if (inputCNS.addEventListener) {                   
+
+var inputCNS = document.getElementById('cns');
+if (inputCNS != null && inputCNS.addEventListener) {                   
     inputCNS.addEventListener("keypress", function(){mascaraTexto(this, '###.####.####.####')});
-} else if (inputCPF.attachEvent) {                  
-    inputCPF.attachEvent("onkeypress", function(){mascaraTexto(this, '###.####.####.####')});
+} else if (inputCNS != null && inputCNS.attachEvent) {                  
+    inputCNS.attachEvent("onkeypress", function(){mascaraTexto(this, '###.####.####.####')});
 }
- 
 
-var inputDataNascimento = document.getElementById("data_nascimento");
-if (inputDataNascimento.addEventListener) {                   
-    inputDataNascimento.addEventListener("keypress", function(){mascaraTexto(this, '##/##/####')});
-} else if (inputDataNascimento.attachEvent) {                  
-    inputDataNascimento.attachEvent("onkeypress", function(){mascaraTexto(this, '##/##/####')});
-}
- 
 
-var inputTelefone = document.getElementById("telefone");
-if (inputTelefone.addEventListener) {                   
+
+
+var inputTelefone = document.getElementById('telefone');
+if (inputTelefone != null && inputTelefone.addEventListener) {                   
     inputTelefone.addEventListener("keypress", function(){mascaraTexto(this, '## ####-####')});
-} else if (inputTelefone.attachEvent) {                  
+} else if (inputTelefone != null && inputTelefone.attachEvent) {                  
     inputTelefone.attachEvent("onkeypress", function(){mascaraTexto(this, '## ####-####')});
+
 }
- 
 
 
- 
+var linkExclusaoPaciente = document.querySelectorAll(".exclusao_paciente");
+if (linkExclusaoPaciente != null) { 
+	for ( var i = 0; i < linkExclusaoPaciente.length; i++ ) {
+		(function(i){
+			var id_paciente = linkExclusaoPaciente[i].getAttribute('rel');
+
+			if (linkExclusaoPaciente[i].addEventListener){
+		    	linkExclusaoPaciente[i].addEventListener("click", function(){confirmaExclusaoPaciente(id_paciente);});
+			}else if (linkExclusaoPaciente[i].attachEvent) { 
+				linkExclusaoPaciente[i].attachEvent("onclick", function(){confirmaExclusaoPaciente(id_paciente);});
+			}
+		})(i);
+	}
+}
+
+var linkExclusaoProfissional = document.querySelectorAll(".exclusao_profissional");
+if (linkExclusaoProfissional != null) { 
+	for ( var i = 0; i < linkExclusaoProfissional.length; i++ ) {
+		(function(i){
+			var id_profissional = linkExclusaoProfissional[i].getAttribute('rel');
+
+			if (linkExclusaoProfissional[i].addEventListener){
+		    	linkExclusaoProfissional[i].addEventListener("click", function(){confirmaExclusaoProfissional(id_profissional);});
+			}else if (linkExclusaoProfissional[i].attachEvent) { 
+				linkExclusaoProfissional[i].attachEvent("onclick", function(){confirmaExclusaoProfissional(id_profissional);});
+			}
+		})(i);
+	}
+}
+
+var linkExclusaoEspecialidade = document.querySelectorAll(".exclusao_especialidade");
+if (linkExclusaoEspecialidade != null) { 
+	for ( var i = 0; i < linkExclusaoEspecialidade.length; i++ ) {
+		(function(i){
+			var id_especialidade = linkExclusaoEspecialidade[i].getAttribute('rel');
+
+			if (linkExclusaoEspecialidade[i].addEventListener){
+		    	linkExclusaoEspecialidade[i].addEventListener("click", function(){confirmaExclusaoEspecialidade(id_especialidade);});
+			}else if (linkExclusaoEspecialidade[i].attachEvent) { 
+				linkExclusaoEspecialidade[i].attachEvent("onclick", function(){confirmaExclusaoEspecialidade(id_especialidade);});
+			}
+		})(i);
+	}
+}
 
 function validaCadastro(evt){
 	var nome = document.getElementById('nome');
@@ -43,7 +80,7 @@ function validaCadastro(evt){
 	var telefone = document.getElementById('telefone');
 	var status = document.getElementById('status');
 	var filtro = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-	var contErro = ;
+	var contErro = 0;
  
  
 
@@ -130,18 +167,111 @@ function validaCadastro(evt){
 		caixa_nome.style.display = 'none';
 	}
  
-	if(contErro > ){
+	if(contErro > 0){
 		evt.preventDefault();
 	}
 }
  
 function mascaraTexto(t, mask){
 	var i = t.value.length;
-	var saida = mask.substring(1,);
+	var saida = mask.substring(1, 0);
 	var texto = mask.substring(i);
  
-	if (texto.substring(,1) != saida){
-		t.value += texto.substring(,1);
+	if (texto.substring(0,1) != saida){
+		t.value += texto.substring(0,1);
 	}
 }
  
+ function confirmaExclusaoPaciente(id){
+	retorno = confirm("Deseja realmente excluir esse Paciente?")
+	if (retorno){
+
+	    //Cria um formulário
+	    var formulario = document.createElement("form");
+	    formulario.action = "action/action_paciente.php";
+	    formulario.method = "post";
+
+		// Cria os inputs e adiciona ao formulário
+	    var inputAcao = document.createElement("input");
+	    inputAcao.type = "hidden";
+	    inputAcao.value = "excluir";
+	    inputAcao.name = "acao";
+	    formulario.appendChild(inputAcao); 
+
+	    var inputId = document.createElement("input");
+	    inputId.type = "hidden";
+	    inputId.value = id;
+	    inputId.name = "id";
+	    formulario.appendChild(inputId);
+
+	    //Adiciona o formulário ao corpo do documento
+	    document.body.appendChild(formulario);
+
+	    //Envia o formulário
+	    formulario.submit();
+	}
+}
+
+function confirmaExclusaoProfissional(id){
+	retorno = confirm("Deseja realmente excluir esse Profissional?")
+
+	if (retorno){
+
+	    //Cria um formulário
+	    var formulario = document.createElement("form");
+	    formulario.action = "action/action_profissional.php";
+	    formulario.method = "post";
+
+		// Cria os inputs e adiciona ao formulário
+	    var inputAcao = document.createElement("input");
+	    inputAcao.type = "hidden";
+	    inputAcao.value = "excluir";
+	    inputAcao.name = "acao";
+	    formulario.appendChild(inputAcao); 
+
+	    var inputId = document.createElement("input");
+	    inputId.type = "hidden";
+	    inputId.value = id;
+	    inputId.name = "id";
+	    formulario.appendChild(inputId);
+
+	    //Adiciona o formulário ao corpo do documento
+	    document.body.appendChild(formulario);
+
+	    //Envia o formulário
+	    formulario.submit();
+	}
+}
+
+
+function confirmaExclusaoEspecialidade(id){
+	retorno = confirm("Deseja realmente excluir essa Especialidade?")
+
+	if (retorno){
+
+	    //Cria um formulário
+	    var formulario = document.createElement("form");
+	    formulario.action = "action/action_especialidade.php";
+	    formulario.method = "post";
+
+		// Cria os inputs e adiciona ao formulário
+	    var inputAcao = document.createElement("input");
+	    inputAcao.type = "hidden";
+	    inputAcao.value = "excluir";
+	    inputAcao.name = "acao";
+	    formulario.appendChild(inputAcao); 
+
+	    var inputId = document.createElement("input");
+	    inputId.type = "hidden";
+	    inputId.value = id;
+	    inputId.name = "id";
+	    formulario.appendChild(inputId);
+
+	    //Adiciona o formulário ao corpo do documento
+	    document.body.appendChild(formulario);
+
+	    //Envia o formulário
+	    formulario.submit();
+	}
+}
+

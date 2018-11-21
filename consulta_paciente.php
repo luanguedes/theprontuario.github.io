@@ -44,6 +44,7 @@ endif;
       
      <div id="header"></div>
 	<div class='container'>
+	<div  class="shadow-lg p-3 mb-5 bg-white rounded">
 		<fieldset>
  
 			<legend><h1>Consulta de Pacientes</h1></legend>
@@ -83,8 +84,8 @@ endif;
 							<td><?=$paciente->telefone?></td>
 							<td><?=$paciente->status?></td>
 							<td>
-								<a href='editar.php?id=<?=$paciente->id?>' class="btn btn-primary">Editar</a>
-								<a href='javascript:void(0)' class="btn btn-danger link_exclusao" rel="<?=$paciente->id?>">Excluir</a>
+								<a href='edit_paciente.php?id=<?=$paciente->id?>' class="btn btn-primary">Editar</a>
+								<a href='javascript:void(0)' class="btn btn-danger exclusao_paciente" rel="<?=$paciente->id?>">Excluir</a>
 							</td>
 						</tr>	
 					<?php endforeach;?>
@@ -96,6 +97,7 @@ endif;
 				<h3 class="text-center text-danger">Não existem pacientes cadastrados!</h3>
 			<?php endif; ?>
 		</fieldset>
+	</div>
 	</div>
 	<script type="text/javascript" src="js/custom.js"></script>
 </body>

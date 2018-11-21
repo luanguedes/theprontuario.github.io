@@ -21,7 +21,7 @@
   <div>
     <center><h1><img src="imagens/icone.png" class="img_titulo"><a class="link" href="index.php">The Prontuário</a></h1></center>
   </div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
 
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,9 +42,9 @@
           Cadastros 
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="cad_paciente.php"><img src="imagens/paciente.png" class="imagem" />Paciente</a>
-          <a class="dropdown-item" href="cad_profissional.php"><img src="imagens/profissional.png" class="imagem" />Profissional</a>
-          <a class="dropdown-item" href="cad_especialidade.php"><img src="imagens/diploma.png" class="imagem" />Especialidade</a>
+          <a class="dropdown-item" id="opcao" href="cad_paciente.php"><img src="imagens/paciente.png" class="imagem" />Paciente</a>
+          <a class="dropdown-item" id="opcao" href="cad_profissional.php"><img src="imagens/profissional.png" class="imagem" />Profissional</a>
+          <a class="dropdown-item" id="opcao" href="cad_especialidade.php"><img src="imagens/diploma.png" class="imagem" />Especialidade</a>
         </div>
       </li>
       

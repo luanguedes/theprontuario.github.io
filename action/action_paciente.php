@@ -32,7 +32,7 @@
 		// Valida os dados recebidos
 		$mensagem = '';
 		if ($acao == 'editar' && $id == ''):
-		    $mensagem .= '<li>ID do registros desconhecido.</li>';
+		    $mensagem .= '<li>ID do paciente desconhecido.</li>';
 	    endif;
  
 	    // Se for ação diferente de excluir valida os dados obrigatórios
@@ -102,25 +102,92 @@
 			$retorno = $stm->execute();
  
 			if ($retorno):
-				echo "<div class='card text-white bg-success mb-3' style='max-width: 40rem;'>
+				echo "<center><div class='card text-white bg-success mb-3' style='max-width: 40rem;'>
   						<div class='card-header'>Sucesso</div>
  						<div class='card-body'>
    							<h5 class='card-title'>Cadastro realizado com sucesso!</h5>
-   							<p class='card-text'>Você irá retornar para a tela de cadatro em 5 segundos...</p>
+   							<p class='card-text'>Você irá retornar para a tela de cadastro em 5 segundos...</p>
   					    </div>
-  					 </div>";
+  					 </div></center>";
 		    else:
-		    	echo "<div class='card text-white bg-danger mb-3' style='max-width: 40rem;' role='alert'>
+		    	echo "<center><div class='card text-white bg-danger mb-3' style='max-width: 40rem;' role='alert'>
   						<div class='card-header'>Erro</div>
  						<div class='card-body'>
    							<h5 class='card-title'>Falha eu realizar o cadastro!</h5>
-   							<p class='card-text'>Contate o Suporte Técnico.<br>Você irá retornar para a tela de cadatro em 5 segundos...</p>
+   							<p class='card-text'>Contate o Suporte Técnico.<br>Você irá retornar para a tela de cadastro em 5 segundos...</p>
   					    </div>
-  					 </div>";
+  					 </div></center>";
 			endif;
  
 			echo "<meta http-equiv=refresh content='5;URL=../cad_paciente.php'>";
 		endif;
+
+		if ($acao == 'editar'):
+		$sql = 'UPDATE paciente SET nome=:nome, sexo=:sexo, data_nascimento=:data_nascimento, cns=:cns, nome_mae=:nome_mae, endereco=:endereco, telefone=:telefone, status=:status ';
+		$sql .= 'WHERE id = :id';
+ 
+			$stm = $conexao->prepare($sql);
+			$stm->bindValue(':nome', $nome);
+			$stm->bindValue(':sexo', $sexo);
+			$stm->bindValue(':data_nascimento', $data_nascimento);
+			$stm->bindValue(':cns', $cns);
+			$stm->bindValue(':nome_mae', $nome_mae);
+			$stm->bindValue(':endereco', $endereco);
+			$stm->bindValue(':telefone', $telefone);
+			$stm->bindValue(':status', $status);
+			$stm->bindValue(':id', $id);
+			$retorno = $stm->execute();
+
+			if ($retorno):
+				echo "<center><div class='card text-white bg-success mb-3' style='max-width: 40rem;'>
+  						<div class='card-header'>Sucesso</div>
+ 						<div class='card-body'>
+   							<h5 class='card-title'>Cadastro editado com sucesso!</h5>
+   							<p class='card-text'>Você irá retornar para a tela de consulta em 5 segundos...</p>
+  					    </div>
+  					 </div></center>";
+		    else:
+		    	echo "<center><div class='card text-white bg-danger mb-3' style='max-width: 40rem;' role='alert'>
+  						<div class='card-header'>Erro</div>
+ 						<div class='card-body'>
+   							<h5 class='card-title'>Falha ao editar o cadastro!</h5>
+   							<p class='card-text'>Contate o Suporte Técnico.<br>Você irá retornar para a tela de consulta em 5 segundos...</p>
+  					    </div>
+  					 </div></center>";
+			endif;
+			echo "<meta http-equiv=refresh content='5;URL=../consulta_paciente.php'>";
+			endif;
+
+
+			if ($acao == 'excluir'):
+
+			
+			$sql = 'DELETE FROM paciente WHERE id = :id';
+			$stm = $conexao->prepare($sql);
+			$stm->bindValue(':id', $id);
+			$retorno = $stm->execute();
+
+			if ($retorno):
+				echo "<center><div class='card text-white bg-success mb-3' style='max-width: 40rem;'>
+  						<div class='card-header'>Sucesso</div>
+ 						<div class='card-body'>
+   							<h5 class='card-title'>Cadastro excluído com sucesso!</h5>
+   							<p class='card-text'>Você irá retornar para a tela de consulta em 5 segundos...</p>
+  					    </div>
+  					 </div></center>";
+		    else:
+		    	echo "<center><div class='card text-white bg-danger mb-3' style='max-width: 40rem;' role='alert'>
+  						<div class='card-header'>Erro</div>
+ 						<div class='card-body'>
+   							<h5 class='card-title'>Falha ao excluir o cadastro!</h5>
+   							<p class='card-text'>Contate o Suporte Técnico.<br>Você irá retornar para a tela de consulta em 5 segundos...</p>
+  					    </div>
+  					 </div></center>";
+			endif;
+			echo "<meta http-equiv=refresh content='5;URL=../consulta_paciente.php'>";
+			endif;
+
+
 		?>
  
 	</div>

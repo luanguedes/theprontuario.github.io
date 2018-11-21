@@ -1,4 +1,6 @@
-
+body{
+	background-color: #ADD8E6;
+}
 fieldset{margin:1% auto;}
 table{ margin-top: 10px;}	
 .box-mensagem-crud{ margin-top: 10px;}
@@ -24,3 +26,11 @@ table{ margin-top: 10px;}
 .link{
 	color: inherit; 
 } 
+
+#opcao:hover{
+	background-color: #FFE4E1;
+}
+
+#container{
+	background-color: white;
+}

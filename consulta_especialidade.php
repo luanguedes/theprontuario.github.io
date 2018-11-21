@@ -8,7 +8,7 @@ $termo = (isset($_GET['termo'])) ? $_GET['termo'] : '';
 if (empty($termo)):
  
 	$conexao = conexao::getInstance();
-	$sql = 'SELECT id, especialidade, status FROM especialidade';
+	$sql = 'SELECT idesp, especialidade, status FROM especialidade';
 	$stm = $conexao->prepare($sql);
 	$stm->execute();
 	$especialidades = $stm->fetchAll(PDO::FETCH_OBJ);
@@ -17,7 +17,7 @@ else:
  
 	// Executa uma consulta baseada no termo de pesquisa passado como parâmetro
 	$conexao = conexao::getInstance();
-	$sql = 'SELECT id, especialidade, status FROM especialidade WHERE nome LIKE :nome';
+	$sql = 'SELECT idesp, especialidade, status FROM especialidade WHERE nome LIKE :nome';
 	$stm = $conexao->prepare($sql);
 	$stm->bindValue(':nome', $termo.'%');
 	$stm->execute();
@@ -43,6 +43,7 @@ endif;
       
      <div id="header"></div>
 	<div class='container'>
+	<div  class="shadow-lg p-3 mb-5 bg-white rounded">
 		<fieldset>
  
 			<legend><h1>Consulta de Especialidades</h1></legend>
@@ -70,8 +71,8 @@ endif;
 							<td><?=$especialidade->especialidade?></td>
 							<td><?=$especialidade->status?></td>
 							<td>
-								<a href='editar.php?id=<?=$especialidade->id?>' class="btn btn-primary">Editar</a>
-								<a href='javascript:void(0)' class="btn btn-danger link_exclusao" rel="<?=$especialidade->id?>">Excluir</a>
+								<a href='edit_especialidade.php?id=<?=$especialidade->idesp?>' class="btn btn-primary">Editar</a>
+								<a href='javascript:void(0)' class="btn btn-danger exclusao_especialidade" rel="<?=$especialidade->idesp?>">Excluir</a>
 							</td>
 						</tr>	
 					<?php endforeach;?>
@@ -83,6 +84,7 @@ endif;
 				<h3 class="text-center text-danger">Não existem especialidades cadastradas!</h3>
 			<?php endif; ?>
 		</fieldset>
+	</div>
 	</div>
 	<script type="text/javascript" src="js/custom.js"></script>
 </body>
