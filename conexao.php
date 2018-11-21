@@ -1,10 +1,10 @@
 <?php 
   
-  define('HOST', 'localhost');  
-  define('DBNAME', 'thebanco');  
+  define('HOST', 'sql100.epizy.com');  
+  define('DBNAME', 'epiz_23011478_thebanco');  
   define('CHARSET', 'utf8');  
-  define('USER', 'root');  
-  define('PASSWORD', '');  
+  define('USER', 'epiz_23011478');  
+  define('PASSWORD', '123');  
 
   class Conexao {  
   
@@ -16,7 +16,7 @@
             
             self::$pdo = new PDO("mysql:host=" . HOST . "; charset=" . CHARSET . ";", USER, PASSWORD); self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        self::$pdo->query("CREATE DATABASE IF NOT EXISTS thebanco");
+        self::$pdo->query("CREATE DATABASE IF NOT EXISTS epiz_23011478_thebanco");
         self::$pdo = new PDO("mysql:host=" . HOST . "; dbname=" . DBNAME . "; charset=" . CHARSET . ";", USER, PASSWORD); 
         self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
        
@@ -31,7 +31,7 @@
       )");
        
         self::$pdo->query("CREATE TABLE IF NOT EXISTS paciente(
-            id int(11) NOT NULL,
+            id int(11) NOT NULL ,
             nome varchar(100) DEFAULT NULL,
             sexo varchar(20) DEFAULT NULL,
             data_nascimento date DEFAULT NULL,
@@ -45,7 +45,7 @@
       )");
 
         self::$pdo->query("CREATE TABLE IF NOT EXISTS profissional(
-            id int(11) NOT NULL,
+            id int(11) NOT NULL ,
             nome varchar(100) DEFAULT NULL,
             sexo varchar(20) DEFAULT NULL,
             data_nascimento date DEFAULT NULL,
@@ -56,7 +56,8 @@
             data_cadastro timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
             data_alteracao timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
       )");
-            
+
+
          } catch (PDOException $e) {  
           print "Erro: " . $e->getMessage();  
        }  
